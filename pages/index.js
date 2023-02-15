@@ -4,7 +4,6 @@ import styles from '@/styles/Home.module.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import ItemCard from '@/components/Card'
 
 export default function Home() {
 
