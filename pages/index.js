@@ -13,7 +13,6 @@ export default function Home() {
 
   const [data, setData] = useState();
 
-
   const getTechTransaferData = async () => {
     const response = await axios.get(url);
     const info = response.data;
@@ -37,6 +36,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Link href='/polychromatic' className={styles.link}>View Earth</Link>
+        <h1>Technology <br /> Transfer</h1>
         {
           data && data.results.map((tech, index) => (
             <div className={styles.cardContainer} key={index}>
@@ -47,17 +47,7 @@ export default function Home() {
               <p>{tech[5]}</p>
             </div>
           )
-          )}
-                {/* {
-                tech && tech.map((t, ind) => {
-                    if(ind === 10) {
-                      return (
-                        <Image src={t} alt={t} key={ind} width={100} height={100}
-                        />
-                      )
-                    }
-                  })
-                } */}
+          )} 
       </main>
     </>
   )

@@ -15,7 +15,7 @@ export default function Polychromatic() {
     const [date, setDate] = useState('');
     const [coords, setCoords] = useState({});
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const apiKey = "JAiRYKIdDYGt3tZEz9eDacoIs3qMgdq2bJWLEuP3";
     const url = `https://epic.gsfc.nasa.gov/api/natural?api_key=${apiKey}`;
@@ -97,6 +97,10 @@ export default function Polychromatic() {
 
     useEffect(() => {
         getPolychromaticData();
+        setTimeout(() => {
+            setLoading(false);
+        }
+        , 3000);
     }, [])
 
     
@@ -119,42 +123,12 @@ export default function Polychromatic() {
                 {loading && <p className={styles.loading}>Loading...</p>}
                 <div className={styles.container}>
                     <Image src='/left.png' onClick={nextImage} width={40} height={40} className={styles.arrows}/>
-                    <Image src={image} alt={image} width={500} height={500} />
+                    <Image id={styles.earth} src={image} alt={image} width={500} height={500} />
                     <Image src='/right.png' onClick={previousImage} width={40} height={40} className={styles.arrows}/>
                 </div>
             </div>
             <Link href='/' className={styles.link}>Back to TechTransfer</Link>
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Image</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {images.map((img, index) => {
-                        return (
-                            <tr key={index}>
-                                <td>{img.time}</td>
-                                <td>{img.coords.lat}</td>
-                                <td>{img.coords.lon}</td>
-                                <td>
-                                    <Image src={img.image} alt={index} width={500} height={500} />
-                                </td>
-                                <td>
-                                    <button onClick={nextImage}>Next</button>
-                                    <button onClick={previousImage}>Previous</button>
-                                </td>
-                            </tr>
-                        )
-                    }
-                    )}
-                </tbody>
-            </table> */}
-            </main>
+        </main>
         </>
     )
 }
