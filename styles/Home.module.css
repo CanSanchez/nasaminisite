@@ -107,6 +107,7 @@
   margin: 1rem;
   padding: 1.5rem 2rem;
   animation: moveup 1s ease-in-out;
+  scrollbar-width: none;
 }
 
 .cardContainer p {
@@ -137,9 +138,11 @@
 @keyframes moveup {
   0% {
     transform: translateY(100vh);
+    scrollbar-width: 0;
   }
   100% {
     transform: translateY(0);
+    scrollbar-width: 0;
   }
 }
 
@@ -170,7 +173,7 @@
   }
 }
 
-/* Mobile */
+/* Tablet and Smaller Desktop */
 @media (max-width: 820px) {
   .main::after {
     width: 80%;
@@ -179,17 +182,50 @@
     bottom: 0em;
     right: 0em;
   }
+
+  .link {
+    top: 2em;
+    right: 2em;
+  }
+
+  .main > h1 {
+    top: 10em;
+    left: 9em;
+  }
 }
 
-/* Tablet and Smaller Desktop */
-@media (min-width: 201px) and (max-width: 1120px) {
-  .main::after {
-    width: 80%;
-    height: 40%;
-    z-index: 100;
-    bottom: 0em;
-    right: 0em;
+/* Mobile */
+@media (min-width: 201px) and (max-width: 500px) {
+
+  .main {
+    padding: 4.5em 1em;
+  
   }
+
+  .main::after {
+    width: 150%;
+    height: 50%;
+  }
+
+  .main > h1 {
+    font-size: 3em;
+    top: 6em;
+    left: 3.5em;
+    transform: rotate(90deg);
+  }
+
+  .link {
+    top: 3em;
+    right: .2em;
+
+  }
+
+  .cardContainer {
+    width: 50%;
+    margin: .5rem;
+    padding: 1rem 1.5rem;
+  }
+
 }
 
 @media (prefers-color-scheme: dark) {
