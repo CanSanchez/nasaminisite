@@ -171,8 +171,8 @@
     }
 
     .main::after {
-      width: 50%;
-      height: 50%;
+      width: 40%;
+      height: 40%;
       bottom: 3em;
       right: 2em;
     }
