@@ -25,6 +25,10 @@
     animation: float 6s ease-in-out infinite;
   }
 
+  .main h1, .main p {
+    color: #fff;
+  }
+
   #earth {
     border-radius: 50%;
     animation:  floatearth 80s ease-in-out infinite;
