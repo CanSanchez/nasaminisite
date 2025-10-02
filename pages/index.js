@@ -9,20 +9,24 @@ export default function Home() {
 
   const apiKey = "JAiRYKIdDYGt3tZEz9eDacoIs3qMgdq2bJWLEuP3";
 
-  const url = `https://api.nasa.gov/techtransfer/patent/?q=10&engine&api_key=${apiKey}`;
+  const url = `https://api.nasa.gov/planetary/apod?count=10&api_key=${apiKey}`;
 
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
-  const getTechTransaferData = async () => {
-    const response = await axios.get(url);
-    const info = response.data;
-    console.log(info);
-    setData(info);
-  }
-
+  const getApodData = async () => {
+    try {
+      const response = await axios.get(url);
+      // Only keep image results
+      const onlyImages = response.data.filter(item => item.media_type === "image");
+      setData(onlyImages);
+    } catch (error) {
+      console.error("Error fetching APOD:", error);
+    }
+  };
+  
   useEffect(() => {
-    getTechTransaferData();
-  }, [])
+    getApodData();
+  }, []);
 
 
 
@@ -35,19 +39,38 @@ export default function Home() {
         <link rel="icon" href="/nasalogo.png" />
       </Head>
       <main className={styles.main}>
-        <Link href='/polychromatic' className={styles.link}>View Earth</Link>
-        <h1>Technology <br /> Transfer</h1>
-        {
-          data && data.results.map((tech, index) => (
-            <div className={styles.cardContainer} key={index}>
-              <h1 style={{color: 'black'}}>{tech[1]}</h1>
-              <Image src={tech[10]} alt={tech[1]} width={100} height={100} className={styles.techimage}/>
-              <p>{tech[2]}</p>
-              <p>{tech[4]}</p>
-              <p>{tech[5]}</p>
-            </div>
-          )
-          )} 
+        <div className={styles.nav}>
+          <h1>NASA APODS</h1>
+          <Link href='/polychromatic' className={styles.link}>View Earth</Link>
+        </div>
+        <div className={styles.apodContainer}>
+            {data.map((apod, index) => (
+              <div key={index} className={styles.cardContainer}>
+                <h2>{apod.title}</h2>
+
+                {apod.media_type === "image" ? (
+                  <Image
+                    src={apod.url}
+                    alt={apod.title}
+                    width={400}
+                    height={300}
+                    className={styles.techimage}
+                  />
+                ) : (
+                  <iframe
+                    width="400"
+                    height="300"
+                    src={apod.url}
+                    title={apod.title}
+                    frameBorder="0"
+                    allowFullScreen
+                  ></iframe>
+                )}
+
+                <p>{apod.date}</p>
+              </div>
+            ))}
+        </div>
       </main>
     </>
   )

@@ -6,7 +6,7 @@ const nextConfig = {
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['technology.nasa.gov', 'epic.gsfc.nasa.gov'],
+    domains: ['technology.nasa.gov', 'epic.gsfc.nasa.gov', 'apod.nasa.gov', 'www.youtube.com', 'img.youtube.com'],
   }
 }
 

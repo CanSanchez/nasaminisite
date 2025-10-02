@@ -127,7 +127,7 @@ export default function Polychromatic() {
                     <Image src='/right.png' onClick={previousImage} width={40} height={40} className={styles.arrows}/>
                 </div>
             </div>
-            <Link href='/' className={styles.link}>Back to TechTransfer</Link>
+            <Link href='/' className={styles.link}>Back to APOD</Link>
         </main>
         </>
     )
